@@ -92,7 +92,6 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="InputX" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="InputY" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -188,9 +187,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InputVyActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="InputTi">
           <Properties>

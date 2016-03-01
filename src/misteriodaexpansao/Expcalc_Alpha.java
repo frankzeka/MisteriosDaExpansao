@@ -7,6 +7,7 @@ package misteriodaexpansao;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author frank
  */
-public class MisteriosDaExpansao extends javax.swing.JFrame {
+public class Expcalc_Alpha extends javax.swing.JFrame {
     public double potencial=0,derivada=0;
     public double M=0;//massa
     public double Ti,Tf,tc,yo,xo,zo,Vxo,Vyo,Vzo; //Condições inicias do movimento relativo 
@@ -32,9 +33,9 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
     public FileWriter Arquivo;
     public PrintWriter GravaArquivo;
     /**
-     * Creates new form MisteriosDaExpansao
+     * Creates new form Expcalc_Alpha
      */
-    public MisteriosDaExpansao() {
+    public Expcalc_Alpha() {
         initComponents();
         
     }
@@ -88,11 +89,6 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
 
         InputVy.setText("2.0");
         InputVy.setBorder(javax.swing.BorderFactory.createTitledBorder("Vy:"));
-        InputVy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputVyActionPerformed(evt);
-            }
-        });
 
         InputTi.setText("0.0");
         InputTi.setBorder(javax.swing.BorderFactory.createTitledBorder("Tempo Inicial"));
@@ -153,7 +149,6 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                         .add(CalculaRK, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(20, 20, 20)))
-                .add(18, 18, 18)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(InputX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(InputY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +213,7 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
             Arquivo = new FileWriter("rk.dat");
             GravaArquivo = new PrintWriter(Arquivo);          
         } catch (IOException ex) {
-            Logger.getLogger(MisteriosDaExpansao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Expcalc_Alpha.class.getName()).log(Level.SEVERE, null, ex);
         }
         //Define o tamanho do passo
         t=Ti;
@@ -248,21 +243,17 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
         try {
             Arquivo.close();
         } catch (IOException ex) {
-            Logger.getLogger(MisteriosDaExpansao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Expcalc_Alpha.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*String[] nargs = { "bash", "-c","./coisa.gp" }; // Mac
+        String[] nargs = { "bash", "-c","./coisa.gp" }; // Mac
         Runtime RodaScript = Runtime.getRuntime();
         try {
             Process p = RodaScript.exec(nargs);
         } catch (IOException ex) {
-            Logger.getLogger(MisteriosDaExpansao.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            Logger.getLogger(Expcalc_Alpha.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_CalculaRKMouseClicked
-
-    private void InputVyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputVyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputVyActionPerformed
 
     public double fa (double t, double x, double y,double Vx,double Vy){
           //double xa=x*x*x*x; <-nao sei
@@ -285,6 +276,7 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Locale.setDefault(Locale.US);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -298,20 +290,20 @@ public class MisteriosDaExpansao extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MisteriosDaExpansao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Expcalc_Alpha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MisteriosDaExpansao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Expcalc_Alpha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MisteriosDaExpansao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Expcalc_Alpha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MisteriosDaExpansao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Expcalc_Alpha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MisteriosDaExpansao().setVisible(true);
+                new Expcalc_Alpha().setVisible(true);
             }
         });
     }
