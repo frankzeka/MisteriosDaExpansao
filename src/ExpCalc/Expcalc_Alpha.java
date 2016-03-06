@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  * @author frank
  */
 public class Expcalc_Alpha extends javax.swing.JFrame {
-    public double potencial=0,derivada=0;
-    public double M=0;//massa
+    public double potencial=0.0,derivada=0.0;
+    public double M=0.0;//massa
     public double Ti,Tf,tc,yo,xo,zo,Vxo,Vyo,Vzo; //Condições inicias do movimento relativo 
     public double n; //Número de passos;
     public double h; // Tamanho do passo
@@ -28,7 +28,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
     public double k3,k33,k333,k3333,k3z,k33z;
     public double k4,k44,k444,k4444,k4z,k44z;
     public double Energia,U,K;   
-    public double i=0;
+    public double i=0.0;
     double pi= 3.14;
     public FileWriter Arquivo;
     public PrintWriter GravaArquivo;
@@ -189,24 +189,24 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
         n   = Double.parseDouble(InputNPassos.getText());
         M  = Double.parseDouble(InputM.getText());
         
-        //Preparando o ritual satanico
+        //Preparando os potenciais e suas respectivas derivadas
         if (Potencial.getSelectedIndex()==0){//Higgs
-            potencial = Math.pow((Math.pow(x,2)-M),2);
-            derivada=4*x*(Math.pow(x,2)-Math.pow(M,2));
+            potencial = Math.pow((Math.pow(x,2.0)-M),2.0);
+            derivada=4.0*x*(Math.pow(x,2.0)-Math.pow(M,2.0));
         }else if(Potencial.getSelectedIndex()==1){//Campo Escalar Massivo
-            potencial = (0.5)*M*Math.pow(x,2);
+            potencial = (0.5)*M*Math.pow(x,2.0);
             derivada=M*x;
         }else if(Potencial.getSelectedIndex()==2){//Campo Escalar Auto Integrante
-            potencial = (0.25)*M*Math.pow(x,2);
-            derivada=M*Math.pow(x,3);
+            potencial = (0.25)*M*Math.pow(x,2.0);
+            derivada=M*Math.pow(x,3.0);
         }else if(Potencial.getSelectedIndex()==3){//Gravitação Einsteiniana
             potencial = Math.exp(M*x);
             derivada=M*Math.exp(M*x);
         }else if(Potencial.getSelectedIndex()==3){//Gravitação Modificada
-            potencial = (0.75)*Math.pow(M,2)*Math.pow(1-Math.exp(-0.81*x),2);
-            derivada=Math.sqrt(6)*Math.exp(Math.sqrt(2/3*x))*(-1+Math.exp(Math.sqrt(2/3*x)))*Math.pow(M,2);
+            potencial = (0.75)*Math.pow(M,2.0)*Math.pow(1-Math.exp(-0.81*x),2);
+            derivada=Math.sqrt(6.0)*Math.exp(Math.sqrt((2.0/3.0)*x))*(-1.0+Math.exp(Math.sqrt((2.0/3.0)*x)))*Math.pow(M,2.0);
         }else if(Potencial.getSelectedIndex()==3){//Natural
-            potencial = 1+Math.cos(x/M);
+            potencial = 1.0+Math.cos(x/M);
             derivada=-(Math.sin(x/M)/M);
         }
         try {
@@ -219,7 +219,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
         t=Ti;
         n=Tf*n;
         h=(Tf-Ti)/n;
-        //Invoca o Satã
+        //Calcula a RK e grava no arquivo
         for(i=0; i<=n; i++){
             GravaArquivo.printf("%e %e %e %e %e\n", t,x,y,Vx,Vy);
             k1=fa(t,x,y,Vx,Vy); // velocidade
@@ -255,20 +255,18 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
        
     }//GEN-LAST:event_CalculaRKMouseClicked
 
-    public double fa (double t, double x, double y,double Vx,double Vy){
-          
-        double funcao= potencial + (0.5)*Math.pow(Vx,2);
-        double term= (2*pi*x*funcao)/( (1.-pi*Math.pow(x,2)) );
+    public double fa (double t, double x, double y,double Vx,double Vy){          
+        double funcao= potencial + (0.5)*Math.pow(Vx,2.0);
+        double term= (2.0*pi*x*funcao)/( (1.0-pi*Math.pow(x,2.0)) );
         double term2= derivada;
-        double term3=Math.sqrt(3*( 1-pi*Math.pow(x,2)) /(8*pi*funcao));
+        double term3=Math.sqrt(3.0*( 1-pi*Math.pow(x,2.0)) /(8.0*pi*funcao));
         double velocidadex= ( term - term2 )*term3*(0.33);
          return(velocidadex); 
     }
     
-    public double ga (double t, double x, double y,double Vx,double Vy){
-        
-        double funcao=potencial + (0.5)*Math.pow(Vx,2) ; 
-        double velocidadey=y*Math.sqrt( (8*pi*funcao)/( 3*(1-pi*Math.pow(x, 2)) ) );  
+    public double ga (double t, double x, double y,double Vx,double Vy){        
+        double funcao=potencial + (0.5)*Math.pow(Vx,2.0) ; 
+        double velocidadey=y*Math.sqrt( (8.0*pi*funcao)/( 3.0*(1-pi*Math.pow(x, 2.0)) ) );  
         return(velocidadey); 
     }
         
