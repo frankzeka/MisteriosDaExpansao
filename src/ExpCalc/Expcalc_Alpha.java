@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package misteriodaexpansao;
+package ExpCalc;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
     public double k4,k44,k444,k4444,k4z,k44z;
     public double Energia,U,K;   
     public double i=0;
-    double pi= Math.PI;
+    double pi= 3.14;
     public FileWriter Arquivo;
     public PrintWriter GravaArquivo;
     /**
@@ -245,7 +245,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Expcalc_Alpha.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String[] nargs = { "bash", "-c","./coisa.gp" }; // Mac
+        String[] nargs = { "bash", "-c","./coisa.gp" }; 
         Runtime RodaScript = Runtime.getRuntime();
         try {
             Process p = RodaScript.exec(nargs);
@@ -256,7 +256,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
     }//GEN-LAST:event_CalculaRKMouseClicked
 
     public double fa (double t, double x, double y,double Vx,double Vy){
-          //double xa=x*x*x*x; <-nao sei
+          
         double funcao= potencial + (0.5)*Math.pow(Vx,2);
         double term= (2*pi*x*funcao)/( (1.-pi*Math.pow(x,2)) );
         double term2= derivada;
@@ -266,7 +266,7 @@ public class Expcalc_Alpha extends javax.swing.JFrame {
     }
     
     public double ga (double t, double x, double y,double Vx,double Vy){
-        //double x4=x*x*x*x;
+        
         double funcao=potencial + (0.5)*Math.pow(Vx,2) ; 
         double velocidadey=y*Math.sqrt( (8*pi*funcao)/( 3*(1-pi*Math.pow(x, 2)) ) );  
         return(velocidadey); 
